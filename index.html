@@ -3,103 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artesanato | Portfólio Premium</title>
+    <title>Artesanato Premium | Identidade & Portfólio</title>
     <style>
         :root {
-            --primary: #8e44ad;
-            --accent: #d2b4de;
-            --dark: #2c3e50;
-            --light: #f4f7f6;
+            --primary: #8e44ad; /* Roxo elegante para artesanato */
+            --secondary: #2c3e50;
+            --accent: #f39c12;
+            --light-bg: #fdfcfb;
+            --text-color: #333;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--light); }
+        body { font-family: 'Poppins', sans-serif; margin: 0; color: var(--text-color); background: var(--light-bg); line-height: 1.6; }
 
-        /* Menu Principal */
-        nav { background: var(--dark); padding: 1rem; position: sticky; top: 0; z-index: 100; }
-        .main-menu { display: flex; justify-content: center; gap: 20px; list-style: none; padding: 0; }
-        .main-menu li a { color: white; text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .main-menu li a:hover { color: var(--accent); }
+        /* --- NAVEGAÇÃO --- */
+        nav { background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .nav-links { list-style: none; display: flex; gap: 20px; margin: 0; }
+        .nav-links li a { text-decoration: none; color: var(--secondary); font-weight: 500; cursor: pointer; transition: 0.3s; }
+        .nav-links li a:hover { color: var(--primary); }
 
-        /* Layout da Categoria */
-        .category-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; padding: 20px; }
+        /* --- FAIXA DA LOJA (HERO) --- */
+        .hero { 
+            height: 60vh; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&q=80&w=1500') center/cover;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 0 20px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; }
 
-        /* Menu de Seleção Particular (Sidebar) */
-        .sidebar { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-right: 20px; height: fit-content; }
-        .sidebar h3 { color: var(--primary); margin-top: 0; }
-        .sidebar-menu { list-style: none; padding: 0; }
-        .sidebar-menu li { padding: 10px 0; border-bottom: 1px solid #eee; cursor: pointer; color: #555; }
-        .sidebar-menu li:hover { color: var(--primary); padding-left: 5px; transition: 0.2s; }
+        /* --- SOBRE A LOJA --- */
+        .about-section { padding: 80px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-text h2 { color: var(--primary); font-size: 2rem; }
+        .about-img img { width: 100%; border-radius: 15px; box-shadow: 20px 20px 0 var(--primary); }
 
-        /* Galeria de Fotos */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-        .photo-card { background: #ddd; height: 250px; border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .photo-card img { width: 100%; height: 100%; object-fit: cover; }
-        .photo-card span { position: absolute; bottom: 10px; background: rgba(255,255,255,0.8); padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; }
+        /* --- IDENTIDADE ORGANIZACIONAL (SOWT/MVV) --- */
+        .identity-grid { background: var(--secondary); color: white; padding: 80px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+        .identity-card { padding: 30px; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; transition: 0.3s; }
+        .identity-card:hover { background: rgba(255,255,255,0.05); transform: translateY(-5px); }
+        .identity-card h3 { color: var(--accent); margin-bottom: 15px; }
+
+        /* --- SEÇÃO DE PORTFÓLIO (O QUE JÁ CRIAMOS) --- */
+        .portfolio-preview { padding: 80px 10%; text-align: center; }
+        .btn-view-more { background: var(--primary); color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; margin-top: 30px; }
+
+        footer { background: #1a1a1a; color: #888; text-align: center; padding: 40px; margin-top: 50px; }
     </style>
 </head>
 <body>
 
 <nav>
-    <ul class="main-menu">
-        <li><a onclick="showCategory('kits')">Kits Maternidade</a></li>
-        <li><a onclick="showCategory('bordados')">Bordados à Mão</a></li>
-        <li><a onclick="showCategory('presentes')">Presentes Personalizados</a></li>
-        <li><a onclick="showCategory('croche')">Crochê Moderno</a></li>
-        <li><a onclick="showCategory('decoracao')">Decoração de Festas</a></li>
+    <div class="logo">ARTESANATO PRO</div>
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#identidade">Valores</a></li>
+        <li><a href="#portfolio">Galeria</a></li>
     </ul>
 </nav>
 
-<div class="category-container">
-    <aside class="sidebar">
-        <h3 id="cat-title">Kits Maternidade</h3>
-        <ul class="sidebar-menu" id="sub-menu">
-            <li>Filtrar por Cor</li>
-            <li>Pronta Entrega</li>
-            <li>Mais Recentes</li>
-            <li>Sob Encomenda</li>
-        </ul>
-    </aside>
+<section class="hero" id="home">
+    <h1>Arte Feita com Propósito</h1>
+    <p>Transformando fios, tecidos e sonhos em peças únicas para o seu dia a dia.</p>
+</section>
 
-    <main class="gallery" id="gallery-grid">
-        <div class="photo-card"><span>Foto 1</span></div>
-        <div class="photo-card"><span>Foto 2</span></div>
-        <div class="photo-card"><span>Foto 3</span></div>
-        <div class="photo-card"><span>Foto 4</span></div>
-        <div class="photo-card"><span>Foto 5</span></div>
-        <div class="photo-card"><span>Foto 6</span></div>
-        <div class="photo-card"><span>Foto 7</span></div>
-        <div class="photo-card"><span>Foto 8</span></div>
-        <div class="photo-card"><span>Foto 9</span></div>
-        <div class="photo-card"><span>Foto 10</span></div>
-    </main>
-</div>
+<section class="about-section" id="sobre">
+    <div class="about-text">
+        <h2>Nossa História</h2>
+        <p>Fundada em <strong>2023</strong> (ou seu ano aqui), a [Nome da Loja] nasceu da paixão pelo feito à mão. O que começou como um hobby de criar kits personalizados para a família, transformou-se em um ateliê focado em excelência técnica e carinho em cada ponto.</p>
+        <p>Hoje, atendemos todo o Brasil, levando um pedacinho da nossa dedicação para dentro de milhares de lares.</p>
+    </div>
+    <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1517646331032-9e8563c520a1?auto=format&fit=crop&q=80&w=800" alt="Ateliê">
+    </div>
+</section>
 
-<script>
-    const menus = {
-        'kits': ['Cestos', 'Organizadores', 'Higiene', 'Mantas'],
-        'bordados': ['Bastidores', 'Toalhas', 'Roupas', 'Quadros'],
-        'presentes': ['Aniversário', 'Casamento', 'Batizado', 'Datas Especiais'],
-        'croche': ['Amigurumi', 'Vestuário', 'Sousplat', 'Bolsas'],
-        'decoracao': ['Painéis', 'Lembrancinhas', 'Centros de Mesa', 'Temáticos']
-    };
+<section class="identity-grid" id="identidade">
+    <div class="identity-card">
+        <h3>Missão</h3>
+        <p>Proporcionar alegria e exclusividade através de produtos artesanais que contam histórias.</p>
+    </div>
+    <div class="identity-card">
+        <h3>Visão</h3>
+        <p>Ser referência nacional em kits de maternidade e bordados personalizados até 2027.</p>
+    </div>
+    <div class="identity-card">
+        <h3>Valores</h3>
+        <p>Ética, Qualidade Impecável, Sustentabilidade e Respeito ao Tempo do Artesão.</p>
+    </div>
+    <div class="identity-card">
+        <h3>Diferencial (SWOT)</h3>
+        <p>Uso de tecnologia para personalização rápida sem perder o toque manual clássico.</p>
+    </div>
+</section>
 
-    function showCategory(cat) {
-        // Atualiza Título
-        document.getElementById('cat-title').innerText = cat.charAt(0).toUpperCase() + cat.slice(1);
-        
-        // Atualiza Submenu Particular
-        const subMenu = document.getElementById('sub-menu');
-        subMenu.innerHTML = '';
-        menus[cat].forEach(item => {
-            let li = document.createElement('li');
-            li.innerText = item;
-            subMenu.appendChild(li);
-        });
+<section class="portfolio-preview" id="portfolio">
+    <h2>Explore Nossas Categorias</h2>
+    <p>Clique abaixo para acessar o menu particular de cada tipo de artesanato.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 20px;">
+        <button class="btn-view-more">Kits Maternidade</button>
+        <button class="btn-view-more">Bordados</button>
+        <button class="btn-view-more">Presentes</button>
+        <button class="btn-view-more">Crochê</button>
+        <button class="btn-view-more">Decoração</button>
+    </div>
+</section>
 
-        // Aqui entraria a lógica para trocar as 10 fotos do grid
-        console.log("Carregando 10 fotos de: " + cat);
-    }
-</script>
+<footer>
+    <p>&copy; 2026 - [Seu Nome ou Nome da Loja]. Todos os direitos reservados.</p>
+    <p>Minas Gerais - Brasil</p>
+</footer>
 
 </body>
 </html>
