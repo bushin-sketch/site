@@ -1,93 +1,95 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <title>Produtos | Artesanato Pro</title>
+    <title>Produtos | Vulcan Store</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .cat-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; overflow-x: auto; }
-        .cat-btn { border: 1px solid var(--primary); background: transparent; padding: 8px 15px; border-radius: 20px; cursor: pointer; white-space: nowrap; }
-        .cat-btn.active { background: var(--primary); color: white; }
-        .history-card { background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 5px solid var(--gold); }
-    </style>
 </head>
 <body>
     <nav>
-        <div class="logo">ART PRO</div>
+        <div class="logo">VULCAN<span>STORE</span></div>
         <ul class="nav-links">
             <li><a href="index.html">HOME</a></li>
-            <li><a href="produtos.html">PRODUTOS</a></li>
-            <li><a href="sobre.html">SOBRE</a></li>
-            <li><a href="login.html" class="login-btn" id="nav-user">👤 LOGIN</a></li>
+            <li><a href="produtos.html">CATÁLOGO</a></li>
+            <li><a href="sobre.html">A MARCA</a></li>
+            <li><a href="login.html" id="nav-user">👤 ACESSO</a></li>
         </ul>
     </nav>
 
-    <section class="container">
-        <h2>Catálogo de Criações</h2>
+    <div class="container">
+        <h2 style="text-align: left;">DROP ATUAL</h2>
         
-        <div class="cat-menu">
-            <button class="cat-btn active" onclick="loadCat('Kits Maternidade', this)">Kits Maternidade</button>
-            <button class="cat-btn" onclick="loadCat('Bordados', this)">Bordados</button>
-            <button class="cat-btn" onclick="loadCat('Presentes', this)">Presentes</button>
-            <button class="cat-btn" onclick="loadCat('Crochê', this)">Crochê</button>
-            <button class="cat-btn" onclick="loadCat('Decoração', this)">Decoração</button>
+        <div class="cat-filter" style="margin-bottom: 30px; display: flex; gap: 15px;">
+            <button onclick="filtrar('Streetwear')" class="btn-vulcan">Streetwear</button>
+            <button onclick="filtrar('Times')" class="btn-vulcan" style="background:#333">Camisolas Equipas</button>
+            <button onclick="filtrar('Corta-Vento')" class="btn-vulcan" style="background:#333">Corta-Vento</button>
+            <button onclick="filtrar('Acessórios')" class="btn-vulcan" style="background:#333">Acessórios</button>
+            <button onclick="filtrar('Outlet')" class="btn-vulcan" style="background:#333">Outlet</button>
         </div>
 
-        <div class="photo-grid" id="gallery"></div>
+        <div id="catalog" class="product-grid">
+            </div>
 
-        <div style="background: white; padding: 40px; border-radius: 20px; margin-top: 50px;">
-            <h3>Solicitar Orçamento Detalhado</h3>
-            <p>Descreva cores, nomes e tamanhos desejados.</p>
-            <textarea id="descricao" rows="5" style="width:100%; padding:15px; border-radius:10px; border:1px solid #ddd;" placeholder="Ex: Kit Maternidade Azul Marinho, 3 peças, nome 'Gabriel'..." required></textarea>
-            <button class="btn-main" style="margin-top:20px; background:#27ae60" onclick="enviarPedido()">ENVIAR PARA WHATSAPP</button>
-        </div>
+        <section id="order-box" style="background: #000; color: white; padding: 50px; border-radius: 4px; margin-top: 50px;">
+            <h3>SOLICITAR DROP PERSONALIZADO</h3>
+            <p>Descreva o modelo, tamanho (P ao GG) e cor desejada.</p>
+            <textarea id="pedido-desc" rows="4" style="width:100%; background:#222; border:1px solid #444; color:white; padding:15px;" placeholder="Ex: Camisola do Real Madrid 24/25, tamanho M, versão jogador..."></textarea>
+            <button onclick="enviarPedidoVulcan()" class="btn-vulcan" style="margin-top:20px; width:100%;">ENVIAR PARA O WHATSAPP DA VULCAN</button>
+        </section>
 
-        <div style="margin-top: 50px;">
-            <h3>Meu Histórico</h3>
-            <div id="historico"></div>
+        <div id="history-section" style="margin-top: 40px;">
+            <h3>MEU HISTÓRICO DE PEDIDOS</h3>
+            <div id="history-list"></div>
         </div>
-    </section>
+    </div>
 
     <script>
-        const zap = "5535991554774";
-        const gallery = document.getElementById('gallery');
+        const ZAP_VULCAN = "5535991554774";
         const user = JSON.parse(localStorage.getItem('artesao_user'));
 
-        if(user) document.getElementById('nav-user').innerText = `Olá, ${user.nome.split(' ')[0]}`;
-
-        function loadCat(nome, btn) {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            gallery.innerHTML = '';
-            for(let i=1; i<=10; i++) {
-                gallery.innerHTML += `<div class="photo-card"><img src="https://picsum.photos/400?random=${nome+i}"></div>`;
-            }
+        function capitalizarNome(nome) {
+            return nome.toLowerCase().replace(/(^\w{1})|(\s+\w{1})/g, l => l.toUpperCase());
         }
 
-        function enviarPedido() {
-            if(!user) { alert("Faça login para continuar!"); window.location.href='login.html'; return; }
-            const desc = document.getElementById('descricao').value;
-            if(!desc) { alert("Preencha a descrição!"); return; }
+        function enviarPedidoVulcan() {
+            if(!user) { alert("Faz login para registar o teu pedido!"); window.location.href='login.html'; return; }
+            
+            const desc = document.getElementById('pedido-desc').value;
+            const nomeFormatado = capitalizarNome(user.nome);
 
-            const pedido = { data: new Date().toLocaleDateString('pt-BR'), texto: desc };
-            let historico = JSON.parse(localStorage.getItem('pedidos')) || [];
-            historico.unshift(pedido);
-            localStorage.setItem('pedidos', JSON.stringify(historico));
+            const pedido = { data: new Date().toLocaleDateString('pt-PT'), info: desc };
+            let lista = JSON.parse(localStorage.getItem('vulcan_pedidos')) || [];
+            lista.unshift(pedido);
+            localStorage.setItem('vulcan_pedidos', JSON.stringify(lista));
 
+            const msg = `VULCAN STORE - NOVO PEDIDO\n\nCliente: ${nomeFormatado}\nPedido: ${desc}`;
+            window.open(`https://api.whatsapp.com/send?phone=${ZAP_VULCAN}&text=${encodeURIComponent(msg)}`);
             renderHistory();
-            const msg = `Olá! Sou ${user.nome}.\nPedido: ${desc}`;
-            window.open(`https://api.whatsapp.com/send?phone=${zap}&text=${encodeURIComponent(msg)}`);
         }
 
         function renderHistory() {
-            const histDiv = document.getElementById('historico');
-            let historico = JSON.parse(localStorage.getItem('pedidos')) || [];
-            if(historico.length === 0) { histDiv.innerHTML = "<p>Nenhum pedido ainda.</p>"; return; }
-            histDiv.innerHTML = historico.map(p => `<div class="history-card"><strong>${p.data}</strong><br>${p.texto}</div>`).join('');
+            const div = document.getElementById('history-list');
+            const lista = JSON.parse(localStorage.getItem('vulcan_pedidos')) || [];
+            div.innerHTML = lista.map(p => `<div style="background:#f4f4f4; padding:15px; margin-bottom:10px; border-left:4px solid #FF4500"><strong>${p.data}</strong>: ${p.info}</div>`).join('');
         }
 
-        // Início padrão
-        loadCat('Kits Maternidade', document.querySelector('.cat-btn'));
+        // Função para simular o catálogo (Aqui você colocará os links das fotos do Drive)
+        function filtrar(cat) {
+            const catalog = document.getElementById('catalog');
+            catalog.innerHTML = '';
+            for(let i=1; i<=10; i++) {
+                catalog.innerHTML += `
+                    <div class="product-card">
+                        <img class="product-img" src="https://picsum.photos/400/500?random=${cat+i}">
+                        <div class="product-info">
+                            <h4>${cat} Edition Vol.${i}</h4>
+                            <p style="color:var(--primary); font-weight:bold;">Sob Consulta</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        filtrar('Streetwear');
         renderHistory();
     </script>
 </body>
