@@ -2,30 +2,57 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Sobre | Artesanato Pro</title>
+    <title>Vulcan Store | Streetwear & Camisas de Time</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <div class="logo">ART PRO</div>
+        <div class="logo">VULCAN<span>STORE</span></div>
         <ul class="nav-links">
             <li><a href="index.html">HOME</a></li>
             <li><a href="produtos.html">PRODUTOS</a></li>
-            <li><a href="sobre.html">SOBRE</a></li>
-            <li><a href="login.html" class="login-btn">👤 LOGIN</a></li>
+            <li><a href="sobre.html">A MARCA</a></li>
+            <li><a href="login.html" class="login-btn" id="nav-user">👤 LOGIN</a></li>
         </ul>
     </nav>
 
-    <div class="container">
-        <h2>Nossa Trajetória</h2>
-        <div style="display: flex; gap: 50px; align-items: center; flex-wrap: wrap;">
-            <img src="https://picsum.photos/500/400" style="flex: 1; min-width: 300px; border-radius: 20px;">
-            <div style="flex: 1; min-width: 300px;">
-                <p>A <strong>Artesanato Pro</strong> nasceu em Minas Gerais com a missão de elevar o trabalho manual ao patamar de artigos de luxo.</p>
-                <p>Especializados em técnicas tradicionais de bordado e crochê, unimos a modernidade da gestão de serviços administrativos com a delicadeza do feito à mão.</p>
-                <p>Cada ponto é pensado para durar gerações.</p>
+    <header class="hero-vulcan">
+        <div class="hero-content">
+            <h1>DOMINE AS RUAS</h1>
+            <p>Streetwear Premium e as Camisas de Time mais raras do mercado.</p>
+            <div class="badge-envio">🚚 ENVIAMOS PARA TODO O BRASIL</div>
+            <a href="produtos.html" class="btn-vulcan" style="display:inline-block; margin-top:20px; text-decoration:none;">VER CATÁLOGO</a>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="swot-grid">
+            <div class="swot-card">
+                <h3>MISSÃO</h3>
+                <p>Democratizar o acesso ao streetwear de luxo e mantos exclusivos.</p>
+            </div>
+            <div class="swot-card">
+                <h3>VISÃO</h3>
+                <p>Ser a maior referência em Streetwear de Minas Gerais para o Brasil.</p>
+            </div>
+            <div class="swot-card">
+                <h3>VALORES</h3>
+                <p>Autenticidade, Rapidez na Entrega e Respeito à Cultura Urbana.</p>
             </div>
         </div>
-    </div>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Vulcan Store. Todos os direitos reservados.</p>
+        <p>Enviando estilo para todo o Brasil 🇧🇷</p>
+    </footer>
+
+    <script>
+        // Atualização anual automática do Copyright
+        document.getElementById('year').innerText = new Date().getFullYear();
+        
+        const user = JSON.parse(localStorage.getItem('vulcan_user'));
+        if(user) document.getElementById('nav-user').innerText = `SALVE, ${user.nome.split(' ')[0].toUpperCase()}`;
+    </script>
 </body>
 </html>
