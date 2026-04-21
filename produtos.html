@@ -9,113 +9,100 @@
     <nav>
         <div class="logo">VULCAN<span>STORE</span></div>
         <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="produtos.html">PRODUTOS</a></li>
-            <li><a href="sobre.html">A MARCA</a></li>
-            <li><a href="login.html" class="login-btn" id="nav-user">👤 LOGIN</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="login.html" id="nav-user">Login</a></li>
         </ul>
     </nav>
 
-    <section class="container">
-        <h2>DROPS EXCLUSIVOS</h2>
+    <div class="container">
+        <h2 style="margin-bottom:30px;">DROPS DISPONÍVEIS</h2>
         
-        <div class="cat-menu">
-            <button class="cat-btn active" onclick="loadCat('Streetwear', this)">Streetwear</button>
-            <button class="cat-btn" onclick="loadCat('Camisetas de Time', this)">Camisetas de Time</button>
-            <button class="cat-btn" onclick="loadCat('Corta-Vento', this)">Corta-Vento</button>
-        </div>
-
-        <div class="product-grid" id="gallery">
+        <div class="product-grid">
+            <div class="product-card" onclick="setOrder('Camiseta Streetwear Oversized')">
+                <div class="tag-promo">NEW DROP</div>
+                <img src="https://picsum.photos/600/600?street">
+                <div style="padding:15px;">
+                    <h4>STREETWEAR OVERSIZED</h4>
+                    <p style="color:var(--primary); font-weight:bold;">ORÇAR AGORA</p>
+                </div>
             </div>
 
-        <div id="orcamento-flutuante" class="order-form-container">
-            <h3>ORÇAMENTO AUTOMÁTICO</h3>
-            <p id="label-produto">Selecione um produto acima...</p>
-            
-            <div class="sub-opcoes">
-                <label>Tamanho e Valor:</label>
-                <select id="tamanho-valor">
-                    <option value="P - R$ 129,90">P - R$ 129,90</option>
-                    <option value="M - R$ 129,90">M - R$ 129,90</option>
-                    <option value="G - R$ 139,90">G - R$ 139,90</option>
-                    <option value="GG - R$ 149,90">GG - R$ 149,90</option>
-                </select>
+            <div class="product-card" onclick="setOrder('Camiseta de Time Tailandesa 1:1')">
+                <div class="tag-promo">MAIS VENDIDO</div>
+                <img src="https://picsum.photos/600/600?jersey">
+                <div style="padding:15px;">
+                    <h4>CAMISAS DE TIME 1:1</h4>
+                    <p style="color:var(--primary); font-weight:bold;">ORÇAR AGORA</p>
+                </div>
             </div>
-
-            <textarea id="detalhes" placeholder="Ex: Cor preta, modelo oversized... (Obrigatório)"></textarea>
-            <button class="btn-main" style="background:#25D366" onclick="enviarPedido()">FINALIZAR NO WHATSAPP</button>
         </div>
 
-        <div style="margin-top:50px;">
-            <h3>MEU HISTÓRICO VULCAN</h3>
-            <div id="historico"></div>
+        <section id="order-form" style="display:none; background:#000; color:white; padding:40px; margin-top:50px; border-radius:4px;">
+            <h3 id="prod-name" style="color:var(--primary); margin-bottom:20px;"></h3>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                <div>
+                    <label>TAMANHO E VALOR</label>
+                    <select id="size" style="width:100%; padding:12px; background:#222; color:white; border:none;">
+                        <option value="P - R$ 129,90">P - R$ 129,90</option>
+                        <option value="M - R$ 129,90">M - R$ 129,90</option>
+                        <option value="G - R$ 139,90">G - R$ 139,90</option>
+                        <option value="GG - R$ 149,90">GG - R$ 149,90</option>
+                    </select>
+                </div>
+                <div>
+                    <label>DÚVIDAS / OBSERVAÇÕES</label>
+                    <input type="text" id="obs" placeholder="Ex: Cor preta, modelo oversized" style="width:100%; padding:12px; background:#222; color:white; border:none;">
+                </div>
+            </div>
+            <button onclick="enviarZap()" style="width:100%; margin-top:20px; background:#25D366; color:white; padding:15px; border:none; font-weight:900; cursor:pointer;">FINALIZAR PEDIDO NO WHATSAPP</button>
+        </section>
+
+        <div style="margin-top:40px;">
+            <h3>MEUS ÚLTIMOS ORÇAMENTOS</h3>
+            <div id="hist-list"></div>
         </div>
-    </section>
+    </div>
 
     <script>
-        let produtoSelecionado = "";
+        let currentItem = "";
+        const user = JSON.parse(localStorage.getItem('vulcan_user'));
 
-        function loadCat(cat, btn) {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const gallery = document.getElementById('gallery');
-            gallery.innerHTML = '';
-
-            // Simulando fotos do catálogo
-            for(let i=1; i<=6; i++) {
-                let nomeProd = `${cat} Mod. ${i}`;
-                gallery.innerHTML += `
-                    <div class="product-card" onclick="selecionarParaOrcamento('${nomeProd}')">
-                        <img src="https://picsum.photos/400/500?random=${nomeProd}" alt="${nomeProd}">
-                        <div class="product-info">
-                            <h4>${nomeProd}</h4>
-                            <p>Clique para Orçar</p>
-                        </div>
-                    </div>
-                `;
-            }
+        function setOrder(name) {
+            currentItem = name;
+            document.getElementById('prod-name').innerText = `🛒 SELECIONADO: ${name.toUpperCase()}`;
+            document.getElementById('order-form').style.display = "block";
+            document.getElementById('order-form').scrollIntoView({behavior:'smooth'});
         }
 
-        function selecionarParaOrcamento(nome) {
-            produtoSelecionado = nome;
-            document.getElementById('label-produto').innerHTML = `🛒 Orçando: <strong>${nome}</strong>`;
-            document.getElementById('orcamento-flutuante').scrollIntoView({behavior: 'smooth'});
-        }
-
-        function enviarPedido() {
-            const user = JSON.parse(localStorage.getItem('vulcan_user'));
-            if(!user) { alert("Acesse sua conta primeiro!"); window.location.href='login.html'; return; }
-            if(!produtoSelecionado) { alert("Selecione um produto no catálogo primeiro!"); return; }
+        function enviarZap() {
+            if(!user) { alert("Acesse sua conta primeiro!"); window.location.href="login.html"; return; }
+            const size = document.getElementById('size').value;
+            const obs = document.getElementById('obs').value;
             
-            const tamValor = document.getElementById('tamanho-valor').value;
-            const detalhes = document.getElementById('detalhes').value;
+            // Correção automática de nome
+            const nomeCli = user.nome.toLowerCase().replace(/(^\w{1})|(\s+\w{1})/g, l => l.toUpperCase());
 
-            // Formatação do Nome
-            const nomeFormatado = user.nome.toLowerCase().replace(/(^\w{1})|(\s+\w{1})/g, l => l.toUpperCase());
+            const msg = `🔥 *PEDIDO VULCAN STORE*\n\n` +
+                        `👤 *CLIENTE:* ${nomeCli}\n` +
+                        `👕 *PRODUTO:* ${currentItem}\n` +
+                        `📏 *TAMANHO:* ${size}\n` +
+                        `📝 *OBS:* ${obs || 'Nenhuma'}\n\n` +
+                        `💳 Aceitamos Cartão e Pix\n` +
+                        `🚚 Envio para todo o Brasil`;
 
-            const msg = `VULCAN STORE - NOVO PEDIDO\n\n` +
-                        `Cliente: ${nomeFormatado}\n` +
-                        `Produto: ${produtoSelecionado}\n` +
-                        `Tamanho/Valor: ${tamValor}\n` +
-                        `Obs: ${detalhes}\n\n` +
-                        `🚚 Enviar para: Brasil (Consultar Frete)`;
-
-            window.open(`https://api.whatsapp.com/send?phone=5535991554774&text=${encodeURIComponent(msg)}`);
+            window.open(`https://api.whatsapp.com/send?phone=5535991500447&text=${encodeURIComponent(msg)}`);
             
-            // Salvar no Histórico
-            let hist = JSON.parse(localStorage.getItem('vulcan_pedidos')) || [];
-            hist.unshift({data: new Date().toLocaleDateString(), texto: `${produtoSelecionado} (${tamValor})`});
-            localStorage.setItem('vulcan_pedidos', JSON.stringify(hist));
+            let h = JSON.parse(localStorage.getItem('vulcan_hist')) || [];
+            h.unshift({data: new Date().toLocaleDateString(), item: currentItem});
+            localStorage.setItem('vulcan_hist', JSON.stringify(h));
             renderHistory();
         }
 
         function renderHistory() {
-            const h = document.getElementById('historico');
-            let hist = JSON.parse(localStorage.getItem('vulcan_pedidos')) || [];
-            h.innerHTML = hist.map(p => `<div class="history-card"><strong>${p.data}</strong> - ${p.texto}</div>`).join('');
+            const list = JSON.parse(localStorage.getItem('vulcan_hist')) || [];
+            document.getElementById('hist-list').innerHTML = list.map(p => `<div style="background:#f4f4f4; padding:10px; margin-top:5px; border-left:3px solid var(--primary)">${p.data} - ${p.item}</div>`).join('');
         }
-
-        loadCat('Streetwear', document.querySelector('.cat-btn'));
         renderHistory();
     </script>
 </body>
