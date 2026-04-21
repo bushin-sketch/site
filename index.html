@@ -2,48 +2,59 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Home | Artesanato Pro</title>
+    <title>Vulcan Store | Streetwear & Camisas de Time</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <div class="logo">ART PRO</div>
+        <div class="logo">VULCAN<span>STORE</span></div>
         <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="produtos.html">PRODUTOS</a></li>
-            <li><a href="sobre.html">SOBRE</a></li>
-            <li><a href="login.html" class="login-btn" id="nav-user">👤 LOGIN</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="sobre.html">A Marca</a></li>
+            <li><a href="login.html" id="nav-user" style="background:var(--primary); padding:8px 15px; border-radius:4px;">LOGIN</a></li>
         </ul>
     </nav>
 
-    <header style="height: 60vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1200/600'); background-size: cover; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
-        <div>
-            <h1 style="font-size: 3.5rem;">Artesanato de Luxo</h1>
-            <p>Peças únicas feitas à mão em Minas Gerais.</p>
-        </div>
+    <header class="hero">
+        <div class="badge-top">ENVIAMOS PARA TODO O BRASIL 🇧🇷</div>
+        <h1 style="font-size: 4.5rem; font-weight: 900;">VULCAN STORE</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 25px;">Streetwear de elite e os mantos mais exclusivos desde 2022.</p>
+        <a href="produtos.html" style="background:white; color:black; padding:15px 40px; text-decoration:none; font-weight:900; text-transform:uppercase;">Explorar Drop</a>
     </header>
 
+    <div class="trust-bar">
+        <div class="trust-item">💳 ACEITAMOS TODAS AS BANDEIRAS</div>
+        <div class="trust-item">⚡ PIX COM 5% OFF</div>
+        <div class="trust-item"><span class="safe-seal">🔒 COMPRA 100% SEGURA</span></div>
+    </div>
+
     <section class="container">
-        <h2>Nossa Identidade Profissional</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            <div style="background: white; padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--primary);">
-                <h3>Missão</h3>
-                <p>Oferecer exclusividade e carinho através de produtos personalizados de alta qualidade.</p>
+        <h2 style="text-align:center; margin-bottom:40px; font-weight:900;">ESSÊNCIA VULCAN</h2>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+            <div style="padding:30px; border:1px solid #eee;">
+                <h3>FUNDAÇÃO</h3>
+                <p>Criada em Setembro de 2022, a Vulcan Store nasceu para conectar o estilo urbano de Minas Gerais com todo o Brasil.</p>
             </div>
-            <div style="background: white; padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--gold);">
-                <h3>Visão</h3>
-                <p>Ser o ateliê referência em MG para kits maternidade e bordados finos até 2027.</p>
-            </div>
-            <div style="background: white; padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--dark);">
-                <h3>Valores</h3>
-                <p>Ética, transparência, valorização do tempo artesanal e perfeccionismo técnico.</p>
+            <div style="padding:30px; border:1px solid #eee;">
+                <h3>LOGÍSTICA</h3>
+                <p>Operação 100% online com envio rápido e seguro para todos os estados brasileiros.</p>
             </div>
         </div>
     </section>
 
+    <footer>
+        <div class="social-links" style="margin-bottom: 20px;">
+            <a href="https://www.instagram.com/vulcan_store035/" target="_blank">INSTAGRAM</a>
+            <a href="https://wa.me/5535991500447" target="_blank">WHATSAPP</a>
+        </div>
+        <p>&copy; <span id="year"></span> VULCAN STORE. Todos os direitos reservados.</p>
+    </footer>
+
     <script>
-        const user = JSON.parse(localStorage.getItem('artesao_user'));
-        if(user) document.getElementById('nav-user').innerText = `Olá, ${user.nome.split(' ')[0]}`;
+        document.getElementById('year').innerText = new Date().getFullYear();
+        const user = JSON.parse(localStorage.getItem('vulcan_user'));
+        if(user) document.getElementById('nav-user').innerText = `SALVE, ${user.nome.split(' ')[0].toUpperCase()}`;
     </script>
 </body>
 </html>
