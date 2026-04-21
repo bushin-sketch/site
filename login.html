@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Artesanato Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">ART PRO</div>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="produtos.html">PRODUTOS</a></li>
+            <li><a href="sobre.html">SOBRE</a></li>
+            <li><a href="login.html" class="login-btn">👤 LOGIN</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" style="max-width: 500px;">
+        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <h2>Acesse sua Conta</h2>
+            <form id="loginForm">
+                <label>Nome Completo</label>
+                <input type="text" id="nome" style="width:100%; padding:12px; margin: 10px 0 20px 0; border:1px solid #ddd; border-radius:8px;" placeholder="Ex: Maria Silva" required oninput="capitalizar(this)">
+                
+                <label>E-mail</label>
+                <input type="email" id="email" style="width:100%; padding:12px; margin: 10px 0 20px 0; border:1px solid #ddd; border-radius:8px;" placeholder="seu@email.com" required>
+                
+                <button type="submit" class="btn-main">ENTRAR E COMEÇAR</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Função que corrige a primeira letra para maiúscula em tempo real
+        function capitalizar(input) {
+            let palavras = input.value.split(' ');
+            for (let i = 0; i < palavras.length; i++) {
+                if (palavras[i].length > 0) {
+                    palavras[i] = palavras[i].charAt(0).toUpperCase() + palavras[i].slice(1).toLowerCase();
+                }
+            }
+            input.value = palavras.join(' ');
+        }
+
+        document.getElementById('loginForm').onsubmit = function(e) {
+            e.preventDefault();
+            const user = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value
+            };
+            localStorage.setItem('artesao_user', JSON.stringify(user));
+            window.location.href = 'produtos.html';
+        };
+    </script>
+</body>
+</html>
