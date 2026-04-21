@@ -2,57 +2,89 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Vulcan Store | Streetwear & Camisas de Time</title>
+    <title>A Marca | Vulcan Store - Desde 2022</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .about-image {
+            width: 100%;
+            border-radius: 4px;
+            filter: grayscale(100%);
+            transition: 0.5s;
+        }
+        .about-image:hover {
+            filter: grayscale(0%);
+        }
+        .story-text h2 {
+            text-align: left;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+        .values-section {
+            background: #000;
+            color: #fff;
+            padding: 80px 5%;
+            margin-top: 80px;
+        }
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
     <nav>
         <div class="logo">VULCAN<span>STORE</span></div>
         <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="produtos.html">PRODUTOS</a></li>
-            <li><a href="sobre.html">A MARCA</a></li>
-            <li><a href="login.html" class="login-btn" id="nav-user">👤 LOGIN</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="sobre.html">A Marca</a></li>
+            <li><a href="login.html" class="login-btn" id="nav-user">LOGIN</a></li>
         </ul>
     </nav>
 
-    <header class="hero-vulcan">
-        <div class="hero-content">
-            <h1>DOMINE AS RUAS</h1>
-            <p>Streetwear Premium e as Camisas de Time mais raras do mercado.</p>
-            <div class="badge-envio">🚚 ENVIAMOS PARA TODO O BRASIL</div>
-            <a href="produtos.html" class="btn-vulcan" style="display:inline-block; margin-top:20px; text-decoration:none;">VER CATÁLOGO</a>
+    <main class="container">
+        <div class="about-grid">
+            <div class="story-text">
+                <span style="color: var(--primary); font-weight: 900;">EST. SETEMBRO 2022</span>
+                <h2>VULCAN STORE: A ESSÊNCIA URBANA</h2>
+                <p>Nascida em Minas Gerais, a <strong>Vulcan Store</strong> surgiu da necessidade de trazer o que há de mais exclusivo no mundo do streetwear e das camisas de time para o público que respira cultura urbana.</p>
+                <br>
+                <p>Desde a nossa fundação em <strong>Setembro de 2022</strong>, operamos como uma loja 100% online, focada em curadoria técnica e envio rápido. O que começou como uma paixão por mantos exclusivos e estética "hype", transformou-se em uma operação que hoje atende clientes em todos os cantos do <strong>Brasil</strong>.</p>
+            </div>
+            <div class="about-img-box">
+                <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&q=80&w=800" alt="Streetwear Vulcan" class="about-image">
+            </div>
         </div>
-    </header>
+    </main>
 
-    <section class="container">
-        <div class="swot-grid">
-            <div class="swot-card">
-                <h3>MISSÃO</h3>
-                <p>Democratizar o acesso ao streetwear de luxo e mantos exclusivos.</p>
-            </div>
-            <div class="swot-card">
-                <h3>VISÃO</h3>
-                <p>Ser a maior referência em Streetwear de Minas Gerais para o Brasil.</p>
-            </div>
-            <div class="swot-card">
-                <h3>VALORES</h3>
-                <p>Autenticidade, Rapidez na Entrega e Respeito à Cultura Urbana.</p>
+    <section class="values-section">
+        <div class="container">
+            <h2 style="color: #fff; margin-bottom: 50px;">NOSSO DNA</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">ENVIO NACIONAL</h4>
+                    <p style="color: #ccc; font-size: 0.9rem;">Estrutura logística preparada para fazer o seu drop chegar em qualquer cidade do Brasil com segurança e rastreio.</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">QUALIDADE 1:1</h4>
+                    <p style="color: #ccc; font-size: 0.9rem;">Trabalhamos apenas com materiais de alta gramatura e camisas de time com padrão de autenticidade superior.</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">CONFIANÇA VULCAN</h4>
+                    <p style="color: #ccc; font-size: 0.9rem;">Atendimento humanizado via WhatsApp, transparência total e aceitação de todas as bandeiras de cartão.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; <span id="year"></span> Vulcan Store. Todos os direitos reservados.</p>
-        <p>Enviando estilo para todo o Brasil 🇧🇷</p>
-    </footer>
-
-    <script>
-        // Atualização anual automática do Copyright
-        document.getElementById('year').innerText = new Date().getFullYear();
-        
-        const user = JSON.parse(localStorage.getItem('vulcan_user'));
-        if(user) document.getElementById('nav-user').innerText = `SALVE, ${user.nome.split(' ')[0].toUpperCase()}`;
-    </script>
-</body>
-</html>
+    <section class="container" style="text-align: center; padding: 100px 5%;">
+        <h3 style="font-weight: 900; font-size: 2rem;">ACOMPANHE O NOSSO DIA A DIA</h3>
+        <p style="margin-bottom: 30px;">Siga-nos no Instagram para ver os novos drops e feedbacks de clientes.</p>
+        <a href="https://www.instagram.com/vulcan_store035/" target="_blank" class="login-btn" style="text-decoration: none; padding: 20px 50px; font-size: 1rem
