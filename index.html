@@ -2,253 +2,48 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artesanato Pro | Gestão de Pedidos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #8e44ad;
-            --secondary: #2c3e50;
-            --accent: #27ae60;
-            --light-bg: #fdfcfb;
-            --gold: #d4af37;
-        }
-
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--light-bg); color: var(--secondary); scroll-behavior: smooth; }
-
-        /* --- NAVEGAÇÃO --- */
-        nav { 
-            background: white; padding: 1rem 5%; display: flex; justify-content: space-between; 
-            align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
-        }
-        .nav-links { list-style: none; display: flex; gap: 25px; align-items: center; margin: 0; }
-        .nav-links li a { text-decoration: none; color: var(--secondary); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links li a:hover { color: var(--primary); }
-        .login-btn { background: var(--primary); color: white !important; padding: 8px 18px; border-radius: 25px; }
-
-        /* --- HERO & SOBRE --- */
-        .hero { height: 50vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&q=80&w=1500') center/cover; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
-        
-        .section-container { padding: 60px 10%; }
-        .swot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
-        .swot-card { background: white; padding: 20px; border-radius: 10px; border-left: 5px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-
-        /* --- PRODUTOS & CATEGORIAS --- */
-        .products-layout { display: grid; grid-template-columns: 280px 1fr; gap: 30px; margin-top: 40px; }
-        .category-sidebar { background: white; padding: 25px; border-radius: 15px; height: fit-content; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .category-sidebar h3 { font-size: 1.1rem; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .filter-list { list-style: none; padding: 0; }
-        .filter-list li { padding: 12px 0; border-bottom: 1px solid #f9f9f9; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
-        .filter-list li:hover { color: var(--primary); font-weight: bold; }
-
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
-        .photo-item { background: #eee; aspect-ratio: 1/1; border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; }
-        .photo-item img { width: 100%; height: 100%; object-fit: cover; }
-        .photo-item:hover .overlay { opacity: 1; }
-        .overlay { position: absolute; inset: 0; background: rgba(142, 68, 173, 0.7); display: flex; align-items: center; justify-content: center; color: white; opacity: 0; transition: 0.3s; font-weight: bold; }
-
-        /* --- FORMULÁRIO E HISTÓRICO --- */
-        .order-form-container { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-top: 50px; }
-        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        .btn-submit { background: var(--accent); color: white; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
-        .btn-submit:hover { background: #219150; }
-
-        .history-section { margin-top: 40px; }
-        .history-item { background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--gold); display: flex; justify-content: space-between; align-items: center; }
-
-        /* --- MODAL DE LOGIN --- */
-        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 2000; }
-        .modal-content { background: white; padding: 40px; border-radius: 15px; width: 100%; max-width: 400px; text-align: center; }
-
-        .hidden { display: none; }
-    </style>
+    <title>Home | Artesanato Pro</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>
+        <div class="logo">ART PRO</div>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="produtos.html">PRODUTOS</a></li>
+            <li><a href="sobre.html">SOBRE</a></li>
+            <li><a href="login.html" class="login-btn" id="nav-user">👤 LOGIN</a></li>
+        </ul>
+    </nav>
 
-<nav>
-    <div style="font-weight: 600; font-size: 1.2rem; letter-spacing: 1px;">ARTESANATO<span style="color:var(--primary)">PRO</span></div>
-    <ul class="nav-links">
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#produtos">PRODUTOS</a></li>
-        <li><a href="#sobre">SOBRE</a></li>
-        <li><a href="javascript:void(0)" onclick="toggleModal()" class="login-btn" id="user-display">👤 LOGIN</a></li>
-    </ul>
-</nav>
-
-<div id="home" class="hero">
-    <h1>Excelência em Cada Ponto</h1>
-    <p>Sua história transformada em arte personalizada.</p>
-</div>
-
-<section id="sobre" class="section-container">
-    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-        <h2>Nossa Identidade</h2>
-        <p>Fundada em Minas Gerais, transformamos o tradicional em exclusivo. Atuamos com foco na qualidade técnica e no atendimento humanizado.</p>
-    </div>
-    <div class="swot-grid">
-        <div class="swot-card"><h3>Missão</h3><p>Entregar peças que gerem memórias afetivas.</p></div>
-        <div class="swot-card"><h3>Visão</h3><p>Ser o maior ateliê de MG em personalização até 2026.</p></div>
-        <div class="swot-card"><h3>Valores</h3><p>Transparência, artesanalidade e paixão.</p></div>
-    </div>
-</section>
-
-<section id="produtos" class="section-container" style="background: #f9f9f9;">
-    <h2 style="text-align:center">Explore Nosso Portfólio</h2>
-    
-    <div class="products-layout">
-        <aside class="category-sidebar">
-            <h3 id="current-cat-title">Kits Maternidade</h3>
-            <ul class="filter-list" id="sub-menu-list">
-                </ul>
-        </aside>
-
-        <div class="gallery-grid" id="gallery">
-            </div>
-    </div>
-
-    <div class="order-form-container">
-        <h3>Solicitar Novo Orçamento</h3>
-        <p>Preencha os detalhes e receba o atendimento via WhatsApp.</p>
-        <form id="orderForm">
-            <select id="prod-select" required>
-                <option value="">Selecione a Categoria Principal...</option>
-                <option value="Kits Maternidade">Kits Maternidade</option>
-                <option value="Bordados">Bordados à Mão</option>
-                <option value="Presentes">Presentes Personalizados</option>
-                <option value="Crochê">Crochê Moderno</option>
-                <option value="Decoração">Decoração</option>
-            </select>
-            <textarea id="prod-desc" rows="4" placeholder="Descreva tamanho, cores, nomes e detalhes específicos..." required></textarea>
-            <button type="submit" class="btn-submit">ENVIAR PEDIDO E SALVAR NO HISTÓRICO</button>
-        </form>
-    </div>
-
-    <div class="history-section" id="history-section">
-        <h3>Meu Histórico de Orçamentos</h3>
-        <div id="history-list">
-            <p style="color: #999;">Nenhum pedido realizado ainda.</p>
+    <header style="height: 60vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1200/600'); background-size: cover; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+        <div>
+            <h1 style="font-size: 3.5rem;">Artesanato de Luxo</h1>
+            <p>Peças únicas feitas à mão em Minas Gerais.</p>
         </div>
-    </div>
-</section>
+    </header>
 
-<div class="modal" id="loginModal">
-    <div class="modal-content">
-        <h3>Área do Cliente</h3>
-        <p>Identifique-se para salvar seus orçamentos.</p>
-        <input type="text" id="username-input" placeholder="Seu Nome">
-        <input type="email" id="useremail-input" placeholder="Seu E-mail">
-        <button class="btn-submit" onclick="login()">ENTRAR / CADASTRAR</button>
-        <button onclick="toggleModal()" style="background:none; border:none; margin-top:15px; color:#666; cursor:pointer;">Fechar</button>
-    </div>
-</div>
-
-<script>
-    // --- DADOS ---
-    const categorias = {
-        'Kits Maternidade': ['Bolsas', 'Trocadores', 'Kits Higiene', 'Mantas Bordadas'],
-        'Bordados à Mão': ['Bastidores', 'Toalhas de Batizado', 'Roupas Luxo'],
-        'Presentes Personalizados': ['Caixas MDF', 'Canecas em Crochê', 'Chaveiros'],
-        'Crochê Moderno': ['Amigurumis', 'Sousplat', 'Bolsas Boho'],
-        'Decoração': ['Painéis', 'Enfeites de Porta', 'Nomes em Tricotin']
-    };
-
-    let currentUser = JSON.parse(localStorage.getItem('artesao_user')) || null;
-    let pedidos = JSON.parse(localStorage.getItem('artesao_pedidos')) || [];
-
-    // --- INICIALIZAÇÃO ---
-    window.onload = () => {
-        renderGallery('Kits Maternidade');
-        updateUserUI();
-        renderHistory();
-    };
-
-    function toggleModal() {
-        const modal = document.getElementById('loginModal');
-        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-    }
-
-    function login() {
-        const name = document.getElementById('username-input').value;
-        const email = document.getElementById('useremail-input').value;
-        if(name && email) {
-            currentUser = { name, email };
-            localStorage.setItem('artesao_user', JSON.stringify(currentUser));
-            updateUserUI();
-            toggleModal();
-        }
-    }
-
-    function updateUserUI() {
-        if(currentUser) {
-            document.getElementById('user-display').innerText = `Olá, ${currentUser.name.split(' ')[0]}`;
-        }
-    }
-
-    function renderGallery(cat) {
-        document.getElementById('current-cat-title').innerText = cat;
-        const list = document.getElementById('sub-menu-list');
-        list.innerHTML = '';
-        categorias[cat].forEach(sub => {
-            const li = document.createElement('li');
-            li.innerText = sub;
-            list.appendChild(li);
-        });
-
-        const gallery = document.getElementById('gallery');
-        gallery.innerHTML = '';
-        for(let i=1; i<=10; i++) {
-            gallery.innerHTML += `<div class="photo-item"><img src="https://picsum.photos/400?random=${cat+i}"><div class="overlay">VER DETALHES</div></div>`;
-        }
-    }
-
-    // --- LOGICA DE PEDIDOS E HISTÓRICO ---
-    document.getElementById('orderForm').onsubmit = function(e) {
-        e.preventDefault();
-        
-        if(!currentUser) {
-            alert("Por favor, faça LOGIN antes de enviar um orçamento.");
-            toggleModal();
-            return;
-        }
-
-        const novoPedido = {
-            id: Date.now(),
-            categoria: document.getElementById('prod-select').value,
-            descricao: document.getElementById('prod-desc').value,
-            data: new Date().toLocaleDateString('pt-BR')
-        };
-
-        pedidos.push(novoPedido);
-        localStorage.setItem('artesao_pedidos', JSON.stringify(pedidos));
-        
-        renderHistory();
-        enviarZap(novoPedido);
-    };
-
-    function renderHistory() {
-        const list = document.getElementById('history-list');
-        if(pedidos.length === 0) return;
-
-        list.innerHTML = pedidos.map(p => `
-            <div class="history-item">
-                <div>
-                    <strong>${p.categoria}</strong> - <small>${p.data}</small><br>
-                    <span style="font-size:0.85rem; color:#666">${p.descricao.substring(0, 50)}...</span>
-                </div>
-                <span style="color:var(--accent); font-weight:bold;">ENVIADO</span>
+    <section class="container">
+        <h2>Nossa Identidade Profissional</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div style="background: white; padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--primary);">
+                <h3>Missão</h3>
+                <p>Oferecer exclusividade e carinho através de produtos personalizados de alta qualidade.</p>
             </div>
-        `).join('');
-    }
+            <div style="background: white; padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--gold);">
+                <h3>Visão</h3>
+                <p>Ser o ateliê referência em MG para kits maternidade e bordados finos até 2027.</p>
+            </div>
+            <div style="background: white; padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--dark);">
+                <h3>Valores</h3>
+                <p>Ética, transparência, valorização do tempo artesanal e perfeccionismo técnico.</p>
+            </div>
+        </div>
+    </section>
 
-    function enviarZap(pedido) {
-        const fone = "5531999999999"; // SUBSTITUA PELO SEU
-        const texto = `Olá! Sou ${currentUser.name}. Acabei de registrar um pedido no site:
-*Categoria:* ${pedido.categoria}
-*Descrição:* ${pedido.descricao}`;
-        
-        window.open(`https://api.whatsapp.com/send?phone=${fone}&text=${encodeURIComponent(texto)}`, '_blank');
-    }
-</script>
-
+    <script>
+        const user = JSON.parse(localStorage.getItem('artesao_user'));
+        if(user) document.getElementById('nav-user').innerText = `Olá, ${user.nome.split(' ')[0]}`;
+    </script>
 </body>
 </html>
