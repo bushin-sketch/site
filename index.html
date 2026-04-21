@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artesanato | Portfólio Premium</title>
+    <style>
+        :root {
+            --primary: #8e44ad;
+            --accent: #d2b4de;
+            --dark: #2c3e50;
+            --light: #f4f7f6;
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--light); }
+
+        /* Menu Principal */
+        nav { background: var(--dark); padding: 1rem; position: sticky; top: 0; z-index: 100; }
+        .main-menu { display: flex; justify-content: center; gap: 20px; list-style: none; padding: 0; }
+        .main-menu li a { color: white; text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .main-menu li a:hover { color: var(--accent); }
+
+        /* Layout da Categoria */
+        .category-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; padding: 20px; }
+
+        /* Menu de Seleção Particular (Sidebar) */
+        .sidebar { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-right: 20px; height: fit-content; }
+        .sidebar h3 { color: var(--primary); margin-top: 0; }
+        .sidebar-menu { list-style: none; padding: 0; }
+        .sidebar-menu li { padding: 10px 0; border-bottom: 1px solid #eee; cursor: pointer; color: #555; }
+        .sidebar-menu li:hover { color: var(--primary); padding-left: 5px; transition: 0.2s; }
+
+        /* Galeria de Fotos */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .photo-card { background: #ddd; height: 250px; border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .photo-card img { width: 100%; height: 100%; object-fit: cover; }
+        .photo-card span { position: absolute; bottom: 10px; background: rgba(255,255,255,0.8); padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul class="main-menu">
+        <li><a onclick="showCategory('kits')">Kits Maternidade</a></li>
+        <li><a onclick="showCategory('bordados')">Bordados à Mão</a></li>
+        <li><a onclick="showCategory('presentes')">Presentes Personalizados</a></li>
+        <li><a onclick="showCategory('croche')">Crochê Moderno</a></li>
+        <li><a onclick="showCategory('decoracao')">Decoração de Festas</a></li>
+    </ul>
+</nav>
+
+<div class="category-container">
+    <aside class="sidebar">
+        <h3 id="cat-title">Kits Maternidade</h3>
+        <ul class="sidebar-menu" id="sub-menu">
+            <li>Filtrar por Cor</li>
+            <li>Pronta Entrega</li>
+            <li>Mais Recentes</li>
+            <li>Sob Encomenda</li>
+        </ul>
+    </aside>
+
+    <main class="gallery" id="gallery-grid">
+        <div class="photo-card"><span>Foto 1</span></div>
+        <div class="photo-card"><span>Foto 2</span></div>
+        <div class="photo-card"><span>Foto 3</span></div>
+        <div class="photo-card"><span>Foto 4</span></div>
+        <div class="photo-card"><span>Foto 5</span></div>
+        <div class="photo-card"><span>Foto 6</span></div>
+        <div class="photo-card"><span>Foto 7</span></div>
+        <div class="photo-card"><span>Foto 8</span></div>
+        <div class="photo-card"><span>Foto 9</span></div>
+        <div class="photo-card"><span>Foto 10</span></div>
+    </main>
+</div>
+
+<script>
+    const menus = {
+        'kits': ['Cestos', 'Organizadores', 'Higiene', 'Mantas'],
+        'bordados': ['Bastidores', 'Toalhas', 'Roupas', 'Quadros'],
+        'presentes': ['Aniversário', 'Casamento', 'Batizado', 'Datas Especiais'],
+        'croche': ['Amigurumi', 'Vestuário', 'Sousplat', 'Bolsas'],
+        'decoracao': ['Painéis', 'Lembrancinhas', 'Centros de Mesa', 'Temáticos']
+    };
+
+    function showCategory(cat) {
+        // Atualiza Título
+        document.getElementById('cat-title').innerText = cat.charAt(0).toUpperCase() + cat.slice(1);
+        
+        // Atualiza Submenu Particular
+        const subMenu = document.getElementById('sub-menu');
+        subMenu.innerHTML = '';
+        menus[cat].forEach(item => {
+            let li = document.createElement('li');
+            li.innerText = item;
+            subMenu.appendChild(li);
+        });
+
+        // Aqui entraria a lógica para trocar as 10 fotos do grid
+        console.log("Carregando 10 fotos de: " + cat);
+    }
+</script>
+
+</body>
+</html>
