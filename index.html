@@ -1,60 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Vulcan Store | Streetwear & Camisas de Time</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <nav>
-        <div class="logo">VULCAN<span>STORE</span></div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="produtos.html">Produtos</a></li>
-            <li><a href="sobre.html">A Marca</a></li>
-            <li><a href="login.html" id="nav-user" style="background:var(--primary); padding:8px 15px; border-radius:4px;">LOGIN</a></li>
-        </ul>
-    </nav>
-
-    <header class="hero">
-        <div class="badge-top">ENVIAMOS PARA TODO O BRASIL 🇧🇷</div>
-        <h1 style="font-size: 4.5rem; font-weight: 900;">VULCAN STORE</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 25px;">Streetwear de elite e os mantos mais exclusivos desde 2022.</p>
-        <a href="produtos.html" style="background:white; color:black; padding:15px 40px; text-decoration:none; font-weight:900; text-transform:uppercase;">Explorar Drop</a>
-    </header>
-
-    <div class="trust-bar">
-        <div class="trust-item">💳 ACEITAMOS TODAS AS BANDEIRAS</div>
-        <div class="trust-item">⚡ PIX COM 5% OFF</div>
-        <div class="trust-item"><span class="safe-seal">🔒 COMPRA 100% SEGURA</span></div>
-    </div>
-
-    <section class="container">
-        <h2 style="text-align:center; margin-bottom:40px; font-weight:900;">ESSÊNCIA VULCAN</h2>
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
-            <div style="padding:30px; border:1px solid #eee;">
-                <h3>FUNDAÇÃO</h3>
-                <p>Criada em Setembro de 2022, a Vulcan Store nasceu para conectar o estilo urbano de Minas Gerais com todo o Brasil.</p>
-            </div>
-            <div style="padding:30px; border:1px solid #eee;">
-                <h3>LOGÍSTICA</h3>
-                <p>Operação 100% online com envio rápido e seguro para todos os estados brasileiros.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="social-links" style="margin-bottom: 20px;">
-            <a href="https://www.instagram.com/vulcan_store035/" target="_blank">INSTAGRAM</a>
-            <a href="https://wa.me/5535991500447" target="_blank">WHATSAPP</a>
-        </div>
-        <p>&copy; <span id="year"></span> VULCAN STORE. Todos os direitos reservados.</p>
-    </footer>
-
-    <script>
-        document.getElementById('year').innerText = new Date().getFullYear();
-        const user = JSON.parse(localStorage.getItem('vulcan_user'));
-        if(user) document.getElementById('nav-user').innerText = `SALVE, ${user.nome.split(' ')[0].toUpperCase()}`;
-    </script>
-</body>
-</html>
+export default function Portfolio(){return (<div className='min-h-screen bg-black text-white font-sans'>
+<header className='sticky top-0 z-50 border-b border-zinc-800 bg-black/80 backdrop-blur'><div className='max-w-6xl mx-auto px-6 py-4 flex justify-between items-center'><h1 className='text-2xl font-bold tracking-wide'>Kamilly Cezarini</h1><nav className='flex gap-6 text-sm'><a href='#sobre'>Sobre</a><a href='#servicos'>Serviços</a><a href='#portfolio'>Trabalhos</a><a href='#contato'>Contato</a></nav></div></header>
+<main>
+<section className='max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-10 items-center'><div><p className='text-red-500 font-semibold mb-3'>Estratégia • Design • Soluções Digitais</p><h2 className='text-5xl font-bold leading-tight mb-6'>Transformo ideias em presença profissional.</h2><p className='text-zinc-400 text-lg mb-8'>Portfólio criado para destacar sua marca, vender melhor e transmitir autoridade. Atendimento humano, criativo e focado em resultado.</p><div className='flex gap-4'><a href='#contato' className='bg-red-700 hover:bg-red-600 px-6 py-3 rounded-2xl'>Solicitar orçamento</a><a href='#portfolio' className='border border-zinc-700 px-6 py-3 rounded-2xl'>Ver projetos</a></div></div><div className='bg-zinc-900 rounded-3xl p-8 border border-zinc-800 shadow-2xl'><div className='space-y-4'><div className='p-4 rounded-2xl bg-zinc-800'>Branding Premium</div><div className='p-4 rounded-2xl bg-zinc-800'>Sites & Landing Pages</div><div className='p-4 rounded-2xl bg-zinc-800'>Social Media</div><div className='p-4 rounded-2xl bg-zinc-800'>Estratégia Comercial</div></div></div></section>
+<section id='sobre' className='max-w-6xl mx-auto px-6 py-16'><h3 className='text-3xl font-bold mb-6'>Sobre Mim</h3><p className='text-zinc-400 max-w-3xl'>Sou Kamilly Cezarini. Uno visão administrativa, criatividade e tecnologia para desenvolver projetos que ajudam negócios a crescer. Meu foco é entregar estética, organização e resultado real.</p></section>
+<section id='servicos' className='max-w-6xl mx-auto px-6 py-16'><h3 className='text-3xl font-bold mb-8'>Serviços</h3><div className='grid md:grid-cols-3 gap-6'>{['Criação de Logo','Gestão de Redes Sociais','Marketing Digital','Sites e Sistemas','Edição de Fotos','Suporte Administrativo'].map((item)=><div key={item} className='bg-zinc-900 border border-zinc-800 rounded-3xl p-6'><h4 className='font-semibold text-lg mb-2'>{item}</h4><p className='text-zinc-400 text-sm'>Projeto personalizado conforme necessidade do cliente.</p></div>)}</div></section>
+<section id='portfolio' className='max-w-6xl mx-auto px-6 py-16'><h3 className='text-3xl font-bold mb-8'>Trabalhos em Destaque</h3><div className='grid md:grid-cols-3 gap-6'>{[1,2,3,4,5,6].map((n)=><div key={n} className='rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900'><div className='h-44 bg-gradient-to-br from-zinc-800 to-red-900'></div><div className='p-5'><h4 className='font-semibold'>Projeto {n}</h4><p className='text-zinc-400 text-sm mt-2'>Identidade visual / social media / solução digital.</p></div></div>)}</div></section>
+<section id='contato' className='max-w-6xl mx-auto px-6 py-16'><h3 className='text-3xl font-bold mb-8'>Pedidos & Contato</h3><div className='grid md:grid-cols-2 gap-8'><form className='space-y-4 bg-zinc-900 border border-zinc-800 rounded-3xl p-6'><input placeholder='Seu nome' className='w-full p-3 rounded-2xl bg-zinc-800'/><input placeholder='WhatsApp' className='w-full p-3 rounded-2xl bg-zinc-800'/><input placeholder='E-mail' className='w-full p-3 rounded-2xl bg-zinc-800'/><select className='w-full p-3 rounded-2xl bg-zinc-800'><option>Criação de Logo</option><option>Social Media</option><option>Site</option><option>Marketing</option></select><textarea placeholder='Descreva seu projeto' className='w-full p-3 rounded-2xl bg-zinc-800 h-32'></textarea><button type='button' className='w-full bg-red-700 hover:bg-red-600 p-3 rounded-2xl'>Enviar Pedido</button></form><div className='space-y-4'><div className='bg-zinc-900 border border-zinc-800 rounded-3xl p-6'><h4 className='font-semibold mb-2'>Redes Sociais</h4><p className='text-zinc-400'>Instagram: @kamillycezarini</p><p className='text-zinc-400'>WhatsApp: (seu número)</p><p className='text-zinc-400'>E-mail: contato@seudominio.com</p></div><div className='bg-zinc-900 border border-zinc-800 rounded-3xl p-6'><h4 className='font-semibold mb-2'>Atendimento</h4><p className='text-zinc-400'>Respostas rápidas, briefing organizado e acompanhamento do projeto.</p></div></div></div></section>
+</main><footer className='border-t border-zinc-800 mt-10'><div className='max-w-6xl mx-auto px-6 py-6 text-zinc-500 text-sm'>© 2026 Kamilly Cezarini • Todos os direitos reservados</div></footer></div>)}
