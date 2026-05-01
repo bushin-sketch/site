@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="cart-container">
+    <h2>Seu Carrinho</h2>
+
+    {% if itens %}
+        <div class="cart-items">
+            {% for item in itens %}
+            <div class="cart-item">
+                <img src="{{ url_for('static', filename='uploads/' + item.produto.image) }}" width="80">
+                <div class="item-info">
+                    <h4>{{ item.produto.name }}</h4>
+                    <p>Tamanho: <strong>{{ item.tamanho }}</strong></p>
+                </div>
+                <p class="item-price">R$ {{ "%.2f"|format(item.produto.price) }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="cart-summary">
+            <h3>Total: R$ {{ "%.2f"|format(total) }}</h3>
+            <div class="cart-buttons">
+                <a href="{{ url_for('limpar_carrinho') }}" class="btn-clear">Esvaziar Carrinho</a>
+                <a href="/checkout" class="btn-checkout">Finalizar Compra</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="empty-cart">
+            <p>Seu carrinho está vazio.</p>
+            <a href="/" class="btn-buy">Voltar para a loja</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

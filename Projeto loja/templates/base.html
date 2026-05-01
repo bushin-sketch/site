@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Loja Streetwear</title>
+    <!-- Link para o seu CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Ícones (opcional, mas ajuda no visual estilo Compton) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    {% include 'navbar.html' %} <!-- Sim, usei o nome que está na sua foto "nacbar" -->
+
+    <main class="container">
+        {% block content %}
+        <!-- Conteúdo dinâmico entra aqui -->
+        {% endblock %}
+    </main>
+
+    {% include 'footer.html' %}
+
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+</body>
+</html>

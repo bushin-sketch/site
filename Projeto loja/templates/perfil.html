@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="auth-container">
+    <h2>MEU PERFIL</h2>
+    <form method="POST">
+        <label>NOME DE USUÁRIO</label>
+        <input type="text" name="username" value="{{ current_user.username }}" required>
+        <label>E-MAIL</label>
+        <input type="email" name="email" value="{{ current_user.email }}" required>
+        <label>NOVA SENHA (DEIXE EM BRANCO PARA MANTER)</label>
+        <input type="password" name="password">
+        <button type="submit" class="btn-auth">ATUALIZAR DADOS</button>
+    </form>
+</div>
+{% endblock %}

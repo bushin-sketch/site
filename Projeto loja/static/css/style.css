@@ -1,0 +1,284 @@
+/* ============================================================
+   ESTILO GLOBAL - STREETWEAR INDUSTRIAL
+   ============================================================ */
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --gray-light: #f9f9f9;
+    --gray-border: #ddd;
+    --success: #28a745;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Arial Black', 'Helvetica', sans-serif; /* Fonte pesada */
+}
+
+body { 
+    background-color: var(--white); 
+    color: var(--black); 
+}
+
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 20px; 
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ============================================================
+   NAVBAR (CABEÇALHO)
+   ============================================================ */
+.navbar {
+    background: var(--black);
+    color: var(--white);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; }
+.logo span { color: #666; }
+
+.nav-categories { display: flex; list-style: none; }
+.nav-categories li a {
+    margin: 0 15px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+.nav-categories li a:hover { color: #aaa; }
+
+/* ============================================================
+   VITRINE (GRID DE PRODUTOS)
+   ============================================================ */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    padding: 60px 0;
+}
+
+.product-card {
+    background: var(--white);
+    text-align: left;
+    transition: 0.3s;
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%); /* Efeito Streetwear clássico */
+    transition: 0.5s;
+}
+
+.product-card:hover img { filter: grayscale(0%); }
+
+.product-info h3 { 
+    margin-top: 15px; 
+    font-size: 1rem; 
+    text-transform: uppercase; 
+}
+
+.price { font-weight: 400; margin: 5px 0 15px; font-size: 1.1rem; }
+
+.btn-buy {
+    display: block;
+    background: var(--black);
+    color: var(--white);
+    padding: 12px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+.btn-buy:hover { opacity: 0.8; }
+
+/* ============================================================
+   PÁGINA DE PRODUTO (DETALHES)
+   ============================================================ */
+.product-container {
+    display: flex;
+    gap: 60px;
+    margin: 60px 0;
+}
+
+.product-view-image { flex: 1.2; }
+.product-view-image img { width: 100%; }
+
+.product-view-details { flex: 1; display: flex; flex-direction: column; gap: 25px; }
+
+.price-large { font-size: 2rem; font-weight: 900; }
+
+.size-selection p { font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px; }
+
+.size-options { display: flex; gap: 10px; }
+.size-options input[type="radio"] { display: none; }
+.size-options label {
+    border: 2px solid var(--black);
+    padding: 12px 25px;
+    cursor: pointer;
+    font-weight: 900;
+    transition: 0.2s;
+}
+
+.size-options input[type="radio"]:checked + label {
+    background: var(--black);
+    color: var(--white);
+}
+
+.btn-add-cart {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* ============================================================
+   AUTENTICAÇÃO (LOGIN/CADASTRO) - DESIGN IMPACTANTE
+   ============================================================ */
+.auth-container {
+    max-width: 450px;
+    margin: 100px auto;
+    padding: 60px 40px;
+    background: var(--white);
+    border: 4px solid var(--black);
+    text-align: center;
+    box-shadow: 15px 15px 0px var(--black); /* Sombra pesada */
+}
+
+.auth-container h2 {
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid var(--black);
+    background: var(--gray-light);
+    font-weight: 900;
+}
+
+.btn-auth {
+    width: 100%;
+    padding: 20px;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* ============================================================
+   ADMINISTRAÇÃO E FORMULÁRIOS
+   ============================================================ */
+.admin-container {
+    max-width: 700px;
+    margin: 60px auto;
+    border: 2px solid var(--black);
+    padding: 40px;
+}
+
+.inventory-label {
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 20px 0 10px;
+    display: block;
+    border-bottom: 3px solid var(--black);
+}
+
+select {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--black);
+    background: var(--gray-light);
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+/* ============================================================
+   FOOTER (RODAPÉ)
+   ============================================================ */
+.main-footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 0 20px;
+    margin-top: 100px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.footer-section h4 { margin-bottom: 20px; letter-spacing: 2px; }
+.footer-section ul li { list-style: none; margin-bottom: 10px; }
+.footer-section ul li a { font-size: 0.8rem; color: #888; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 0.7rem;
+    color: #444;
+}
+
+/* Ajustes dos Ícones e Login na Navbar */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-icons i {
+    font-size: 1.2rem;
+    color: var(--white);
+    transition: 0.3s;
+}
+
+.nav-icons i:hover {
+    color: #888;
+}
+
+.user-name {
+    color: var(--white);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    border-left: 1px solid #333;
+    padding-left: 15px;
+}
+
+.logout-link {
+    font-size: 0.7rem;
+    color: #ff4d4d !important; /* Destaque para o Sair */
+    font-weight: 900;
+}

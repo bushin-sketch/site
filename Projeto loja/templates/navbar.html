@@ -1,0 +1,16 @@
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/" class="logo">COMPTON<span>CLONE</span></a>
+        <div class="nav-icons">
+            {% if current_user.is_authenticated %}
+                <a href="/perfil">PERFIL</a>
+                {% if current_user.is_admin %}
+                    <a href="/admin" class="admin-link">ADMIN</a>
+                {% endif %}
+                <a href="/logout">SAIR</a>
+            {% else %}
+                <a href="/login"><i class="fas fa-user"></i> LOGIN</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
