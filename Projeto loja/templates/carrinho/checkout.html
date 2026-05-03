@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="auth-container" style="max-width: 600px; padding: 40px 20px;">
+    <h2>FINALIZAR PEDIDO</h2>
+    
+    <!-- Área de Cupom -->
+    <div style="margin: 20px 0; padding: 15px; border: 2px dashed black; background: #f4f4f4;">
+        <p style="font-size: 0.7rem; font-weight: 900; margin-bottom: 10px;">POSSUI UM CUPOM?</p>
+        <div style="display: flex; gap: 5px;">
+            <input type="text" id="input-cupom" placeholder="CÓDIGO" style="margin-bottom: 0; padding: 10px;">
+            <button type="button" onclick="aplicarCupom()" class="btn-auth" style="width: auto; padding: 10px;">APLICAR</button>
+        </div>
+    </div>
+
+    <!-- Resumo de Valores -->
+    <div style="text-align: left; margin-bottom: 30px; font-size: 0.9rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span>Subtotal:</span> <span>R$ {{ "%.2f"|format(total) }}</span>
+        </div>
+        {% if desconto > 0 %}
+        <div style="display: flex; justify-content: space-between; color: var(--success); margin-bottom: 5px;">
+            <span>Desconto:</span> <span>- R$ {{ "%.2f"|format(desconto) }}</span>
+        </div>
+        {% endif %}
+        <div style="display: flex; justify-content: space-between; font-size: 1.4rem; font-weight: 900; border-top: 4px solid black; padding-top: 10px; margin-top: 10px;">
+            <span>TOTAL:</span> <span>R$ {{ "%.2f"|format(total_final) }}</span>
+        </div>
+    </div>
+
+    <form method="POST">
+        <label class="inventory-label">FORMA DE PAGAMENTO</label>
+        <div class="size-options" style="flex-direction: column; gap: 10px; margin-bottom: 20px;">
+            <input type="radio" name="pagamento" value="pix" id="pix" required>
+            <label for="pix" style="display: flex; justify-content: space-between; background: #000; color: #fff;">
+                <span><i class="fa-brands fa-pix"></i> PIX</span>
+                <span style="color: #00ff00; font-size: 0.6rem;">APROVAÇÃO NA HORA</span>
+            </label>
+
+            <input type="radio" name="pagamento" value="cartao" id="cartao">
+            <label for="cartao">CARTÃO DE CRÉDITO</label>
+        </div>
+        <button type="submit" class="btn-auth" style="background: #00ff00; color: #000;">CONFIRMAR PAGAMENTO</button>
+    </form>
+</div>
+
+<script>
+function aplicarCupom() {
+    const code = document.getElementById('input-cupom').value;
+    window.location.href = `/checkout?cupom=${code}`;
+}
+</script>
+{% endblock %}

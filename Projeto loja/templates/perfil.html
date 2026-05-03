@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="auth-container" style="max-width: 600px;">
+    <h2>MEU PERFIL</h2>
+    <form method="POST" style="margin-bottom: 30px;">
+        <input type="text" name="username" value="{{ current_user.username }}" required>
+        <input type="email" name="email" value="{{ current_user.email }}" required>
+        <button type="submit" class="btn-auth">ATUALIZAR DADOS</button>
+    </form>
+
+    <h3 style="text-transform: uppercase; border-bottom: 3px solid black; margin-bottom: 20px;">Meus Endereços</h3>
+    
+    <!-- Lista de Endereços Existentes -->
+    <div id="lista-enderecos">
+        {% for end in current_user.addresses %}
+        <div style="border: 2px solid black; padding: 15px; margin-bottom: 10px; text-align: left; position: relative;">
+            <p><strong>{{ end.rua }}, {{ end.numero }}</strong></p>
+            <p style="font-size: 0.8rem;">{{ end.bairro }} - {{ end.cidade }}/{{ end.estado }} ({{ end.cep }})</p>
+            <a href="/deletar_endereco/{{ end.id }}" style="color: red; font-size: 0.7rem; font-weight: 900;">REMOVER</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Botão para abrir formulário de endereço -->
+    <button onclick="document.getElementById('form-endereco').style.display='block'" class="btn-clear" style="width: 100%; border: 2px solid black; margin-top: 10px;">+ ADICIONAR ENDEREÇO</button>
+
+    <!-- Formulário Oculto de Endereço com Busca por CEP -->
+    <div id="form-endereco" style="display: none; margin-top: 30px; border-top: 5px solid black; padding-top: 20px;">
+        <form action="/adicionar_endereco" method="POST">
+            <input type="text" name="cep" id="cep" placeholder="CEP (00000-000)" required onblur="buscarCEP()">
+            <input type="text" name="rua" id="rua" placeholder="RUA" required>
+            <input type="text" name="numero" placeholder="NÚMERO" required>
+            <input type="text" name="bairro" id="bairro" placeholder="BAIRRO" required>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" name="cidade" id="cidade" placeholder="CIDADE" required>
+                <input type="text" name="estado" id="estado" placeholder="UF" required maxlength="2">
+            </div>
+            <button type="submit" class="btn-auth">SALVAR ENDEREÇO</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function buscarCEP() {
+    let cep = document.getElementById('cep').value.replace(/\D/g, '');
+    if (cep !== "") {
+        let validacep = /^[0-9]{8}$/;
+        if(validacep.test(cep)) {
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(res => res.json())
+                .then(dados => {
+                    if (!("erro" in dados)) {
+                        document.getElementById('rua').value = dados.logradouro;
+                        document.getElementById('bairro').value = dados.bairro;
+                        document.getElementById('cidade').value = dados.localidade;
+                        document.getElementById('estado').value = dados.uf;
+                    } else {
+                        alert("CEP não encontrado.");
+                    }
+                });
+        }
+    }
+}
+</script>
+{% endblock %}

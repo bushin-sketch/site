@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="admin-container" style="max-width: 800px; margin-top: 40px;">
+    <h2 style="text-transform: uppercase; border-bottom: 5px solid black; padding-bottom: 10px; margin-bottom: 30px;">Gestão de Cupons</h2>
+    
+    <!-- Formulário de Criação Organizado -->
+    <form method="POST" style="border: 4px solid black; padding: 25px; background: #fff; margin-bottom: 40px;">
+        <label class="inventory-label" style="margin-top: 0;">CRIAR NOVO CUPOM</label>
+        
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <div>
+                <p style="font-size: 0.6rem; font-weight: 900;">CÓDIGO</p>
+                <input type="text" name="codigo" placeholder="EX: VULCAN20" required style="margin-bottom: 0;">
+            </div>
+            <div>
+                <p style="font-size: 0.6rem; font-weight: 900;">% OFF</p>
+                <input type="number" name="desconto" placeholder="20" required style="margin-bottom: 0;">
+            </div>
+            <div>
+                <p style="font-size: 0.6rem; font-weight: 900;">VALOR MÍNIMO</p>
+                <input type="number" step="0.01" name="valor_min" placeholder="0.00" style="margin-bottom: 0;">
+            </div>
+        </div>
+        
+        <button type="submit" class="btn-auth">GERAR CUPOM</button>
+    </form>
+
+    <!-- Lista de Cupons com Estilo de Tabela Industrial -->
+    <div style="border: 4px solid black; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead style="background: black; color: white; text-transform: uppercase; font-size: 0.7rem;">
+                <tr>
+                    <th style="padding: 15px; text-align: left;">CÓDIGO</th>
+                    <th>OFF</th>
+                    <th>MÍNIMO</th>
+                    <th>AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody style="text-align: center; font-size: 0.9rem;">
+                {% for c in cupons %}
+                <tr style="border-bottom: 2px solid black;">
+                    <td style="padding: 15px; text-align: left;"><strong>{{ c.code }}</strong></td>
+                    <td>{{ c.discount_percent }}%</td>
+                    <td>R$ {{ "%.2f"|format(c.min_purchase) }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_coupon', id=c.id) }}" style="color: red; font-weight: 900; font-size: 0.7rem;">DELETAR</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="/perfil_admin" class="btn-clear" style="display: block; margin-top: 30px; text-align: center; border: 4px solid black; padding: 15px;">VOLTAR AO PAINEL</a>
+</div>
+{% endblock %}
